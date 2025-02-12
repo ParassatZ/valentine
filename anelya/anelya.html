@@ -16,12 +16,12 @@
             height: 100vh;
             flex-direction: column;
             position: relative;
+            text-align: center;
         }
 
-        /* Фото (изначально скрыто) */
         .photo {
-            width: 250px;
-            height: 250px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             overflow: hidden;
             border: 5px solid white;
@@ -36,10 +36,9 @@
             object-fit: cover;
         }
 
-        /* Красивая кнопка */
         .magic-btn {
-            padding: 20px 40px;
-            font-size: 24px;
+            padding: 15px 30px;
+            font-size: 20px;
             background: linear-gradient(to right, #ff416c, #ff4b2b);
             color: white;
             border: none;
@@ -58,20 +57,18 @@
             transform: translate(-50%, -50%) scale(1.1);
         }
 
-        /* Скрытый текст */
         .hidden-text {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             color: white;
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
 
-        /* Падающие сердечки */
         .heart {
             position: absolute;
             top: -50px;
-            font-size: 24px;
+            font-size: 20px;
             color: red;
             animation: fall linear infinite;
         }
@@ -81,58 +78,64 @@
             100% { transform: translateY(100vh); opacity: 0; }
         }
 
-        /* Гифки (изначально скрыты) */
         .gif {
             position: absolute;
-            width: 200px;
+            width: 120px;
             height: auto;
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
 
         .gif-left {
-            left: 100px;
-            top: 20%;
-            transform: translateY(-50%);
+            left: 5%;
+            top: 30%;
         }
 
         .gif-right {
-            right: 100px;
-            top: 80%;
-            transform: translateY(-50%);
-        }
-        .gif-left-2{
-            left: 100px;
+            right: 5%;
             top: 70%;
-            transform: translateY(-50%);
         }
+
+        .gif-left-2 {
+            left: 5%;
+            top: 70%;
+        }
+
         .gif-right-2 {
-            right: 100px;
+            right: 5%;
             top: 30%;
-            transform: translateY(-50%);
+        }
+
+        @media (max-width: 600px) {
+            .photo {
+                width: 150px;
+                height: 150px;
+            }
+            .magic-btn {
+                font-size: 16px;
+                padding: 12px 24px;
+            }
+            .gif {
+                width: 80px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Фото (изначально скрыто) -->
     <div class="photo" id="photo">
         <img src="anelya.jpg" alt="Любимый человек">
     </div>
 
-    <!-- Кнопка -->
     <button class="magic-btn" id="magicBtn" onclick="showMagic()">Нажми, чтобы увидеть магию</button>
 
-    <!-- Скрытый текст -->
     <div class="hidden-text" id="hiddenText">Happy Valentines Day! 💕</div>
 
-    <!-- Гифки (изначально скрыты) -->
     <img src="https://media.tenor.com/j-dpWMhkEhQAAAAM/ly304.gif" class="gif gif-left" id="gifLeft" alt="Сердечки">
-    <img src="https://media1.giphy.com/media/EZ5SX3ZYRD05ynKiQQ/giphy.gif" class="gif gif-right" id="gifRight" alt="Сердечки">
-    <img src="https://media.tenor.com/j-dpWMhkEhQAAAAM/ly304.gif" class="gif gif-left-2" id="gifLeft2" alt="Сердечки">
+    <img src="https://media.tenor.com/j-dpWMhkEhQAAAAM/ly304.gif" class="gif gif-right" id="gifRight" alt="Сердечки">
+    <img src="https://media1.giphy.com/media/EZ5SX3ZYRD05ynKiQQ/giphy.gif" class="gif gif-left-2" id="gifLeft2" alt="Сердечки">
     <img src="https://media1.giphy.com/media/EZ5SX3ZYRD05ynKiQQ/giphy.gif" class="gif gif-right-2" id="gifRight2" alt="Сердечки">
 
-    <!-- Аудио -->
     <audio id="loveSong" src="anelya.mp3"></audio>
 
     <script>
@@ -152,36 +155,18 @@
         }
 
         function showMagic() {
-            const photo = document.getElementById('photo');
-            const text = document.getElementById('hiddenText');
-            const song = document.getElementById('loveSong');
-            const button = document.getElementById('magicBtn');
-            const gifLeft = document.getElementById('gifLeft');
-            const gifRight = document.getElementById('gifRight');
+            document.getElementById('photo').style.opacity = '1';
+            document.getElementById('hiddenText').style.opacity = '1';
+            document.getElementById('magicBtn').style.display = 'none';
+            document.getElementById('loveSong').play();
 
-            // Убираем кнопку
-            button.style.display = 'none';
-
-            // Показываем фото
-            photo.style.opacity = '1';
-
-            // Показываем текст
             setTimeout(() => {
-                text.style.opacity = '1';
-            }, 1000);
-
-            // Показываем гифки
-            setTimeout(() => {
-                gifLeft.style.opacity = '1';
-                gifRight.style.opacity = '1';
-                gifLeft2.style.opacity = '1';
-                gifRight2.style.opacity = '1';
+                document.getElementById('gifLeft').style.opacity = '1';
+                document.getElementById('gifRight').style.opacity = '1';
+                document.getElementById('gifLeft2').style.opacity = '1';
+                document.getElementById('gifRight2').style.opacity = '1';
             }, 1500);
 
-            // Запускаем музыку
-            song.play();
-
-            // Начинаем создавать падающие сердечки
             setInterval(createHeart, 300);
         }
     </script>
