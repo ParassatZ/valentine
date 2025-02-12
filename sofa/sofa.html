@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Волшебная Валентинка</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ff758c, #ff7eb3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Фото (изначально скрыто) */
+        .photo {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid white;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            margin-bottom: 20px;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Красивая кнопка */
+        .magic-btn {
+            padding: 20px 40px;
+            font-size: 24px;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .magic-btn:hover {
+            background: linear-gradient(to right, #ff4b2b, #ff416c);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* Скрытый текст */
+        .hidden-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Падающие сердечки */
+        .heart {
+            position: absolute;
+            top: -50px;
+            font-size: 24px;
+            color: red;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        /* Гифки (изначально скрыты) */
+        .gif {
+            position: absolute;
+            width: 200px;
+            height: auto;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .gif-left {
+            left: 100px;
+            top: 20%;
+            transform: translateY(-50%);
+        }
+
+        .gif-right {
+            right: 100px;
+            top: 80%;
+            transform: translateY(-50%);
+        }
+        .gif-left-2{
+            left: 100px;
+            top: 70%;
+            transform: translateY(-50%);
+        }
+        .gif-right-2 {
+            right: 100px;
+            top: 30%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Фото (изначально скрыто) -->
+    <div class="photo" id="photo">
+        <img src="sofa.jpg" alt="Любимый человек">
+    </div>
+
+    <!-- Кнопка -->
+    <button class="magic-btn" id="magicBtn" onclick="showMagic()">Нажми, чтобы увидеть магию</button>
+
+    <!-- Скрытый текст -->
+    <div class="hidden-text" id="hiddenText">Happy Valentines Day! 💕</div>
+
+    <!-- Гифки (изначально скрыты) -->
+    <img src="shanelka.jpg" class="gif gif-left" id="gifLeft" alt="Сердечки">
+    <img src="shanelka.jpg" class="gif gif-right" id="gifRight" alt="Сердечки">
+    <img src="shanelka.jpg" class="gif gif-left-2" id="gifLeft2" alt="Сердечки">
+    <img src="shanelka.jpg" class="gif gif-right-2" id="gifRight2" alt="Сердечки">
+
+    <!-- Аудио -->
+    <audio id="loveSong" src="sofa.mp3"></audio>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            document.body.appendChild(heart);
+
+            const left = Math.random() * window.innerWidth;
+            heart.style.left = `${left}px`;
+            heart.style.animationDuration = `${2 + Math.random() * 3}s`;
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        function showMagic() {
+            const photo = document.getElementById('photo');
+            const text = document.getElementById('hiddenText');
+            const song = document.getElementById('loveSong');
+            const button = document.getElementById('magicBtn');
+            const gifLeft = document.getElementById('gifLeft');
+            const gifRight = document.getElementById('gifRight');
+
+            // Убираем кнопку
+            button.style.display = 'none';
+
+            // Показываем фото
+            photo.style.opacity = '1';
+
+            // Показываем текст
+            setTimeout(() => {
+                text.style.opacity = '1';
+            }, 1000);
+
+            // Показываем гифки
+            setTimeout(() => {
+                gifLeft.style.opacity = '1';
+                gifRight.style.opacity = '1';
+                gifLeft2.style.opacity = '1';
+                gifRight2.style.opacity = '1';
+            }, 1500);
+
+            // Запускаем музыку
+            song.play();
+
+            // Начинаем создавать падающие сердечки
+            setInterval(createHeart, 300);
+        }
+    </script>
+
+</body>
+</html>
