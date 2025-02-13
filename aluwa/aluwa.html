@@ -28,6 +28,7 @@
             opacity: 0;
             transition: opacity 1s ease-in-out;
             margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
         }
 
         .photo img {
@@ -58,11 +59,33 @@
         }
 
         .hidden-text {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
             color: white;
             opacity: 0;
             transition: opacity 1s ease-in-out;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .gif {
+            position: absolute;
+            width: 130px;
+            height: auto;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            border: 5px solid white;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .gif-left { left: 5%; top: 20%; }
+        .gif-right { right: 10%; top: 80%; }
+        .gif-left-2 { left: 5%; top: 80%; }
+        .gif-right-2 { right: 10%; top: 20%; }
+
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
         }
 
         .heart {
@@ -71,39 +94,6 @@
             font-size: 20px;
             color: red;
             animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
-        }
-
-        .gif {
-            position: absolute;
-            width: 120px;
-            height: auto;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .gif-left {
-            left: 5%;
-            top: 30%;
-        }
-
-        .gif-right {
-            right: 5%;
-            top: 70%;
-        }
-
-        .gif-left-2 {
-            left: 5%;
-            top: 70%;
-        }
-
-        .gif-right-2 {
-            right: 5%;
-            top: 30%;
         }
 
         @media (max-width: 600px) {
@@ -116,7 +106,7 @@
                 padding: 12px 24px;
             }
             .gif {
-                width: 80px;
+                width: 90px;
             }
         }
     </style>
